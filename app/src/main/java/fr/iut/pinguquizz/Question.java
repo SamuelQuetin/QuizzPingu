@@ -10,6 +10,10 @@ class Question {
         this.bonneReponse = bonneReponse;
         this.mauvaiseReponse = mauvaiseReponse;
     }
+    Question(String question, String bonneReponse){
+        this.question = question;
+        this.bonneReponse = bonneReponse;
+    }
 
     String getQuestion(){
         return question;

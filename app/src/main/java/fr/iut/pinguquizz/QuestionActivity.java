@@ -2,12 +2,16 @@ package fr.iut.pinguquizz;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +30,13 @@ public class QuestionActivity extends Activity implements I_QuestionActivity {
             listquestion.add(new Question("Combien y a t il d'épisodes de pingu?","156","169"));
             listquestion.add(new Question("Quel est le métier du papa de pingu?","Facteur","Pompier"));
             listquestion.add(new Question("Quel est le nom de la soeur de pingu?","Pinga","Rose"));
+            listquestion.add(new Question("Qui est Bajoo?","Un homme des neiges","Un Otarie trop gentils"));
+            listquestion.add(new Question("Quel est le nom de l'épisode 23 de la saison 4?","Pingu perd un pari","Pingu apprend à pecher"));
+            listquestion.add(new Question("Quel personnage se révèle être diabolique dans l'épisode \"Un mariage avec Pingu\" ?","L'aspirateur","Un bonhomme de neige"));
 
         }
 
         super.onCreate(savedInstanceState);
-        Intent intent = getIntent();
         setContentView(R.layout.question_layout);
         question = (TextView) findViewById(R.id.questionLabel);
         Button buttonLeft = (Button) findViewById(R.id.bouton_left);
@@ -47,6 +53,9 @@ public class QuestionActivity extends Activity implements I_QuestionActivity {
             buttonRight.setText(quest.getBonneReponse());
             buttonLeft.setText(quest.getMauvaiseReponse());
         }
+
+        ConstraintLayout l = (ConstraintLayout) findViewById(R.id.linearLayout);
+        l.setBackgroundColor(Color.RED);
 
         View.OnClickListener buttonListener = new View.OnClickListener() {
             @Override

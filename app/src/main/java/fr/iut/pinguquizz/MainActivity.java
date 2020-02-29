@@ -30,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
                                             @Override
                                             public void onClick(View v) {
                                                 MainActivity.score = 0;
-                                                for (int i = 0; i < 10
+                                                for (int i = 0; i < 1
                                                         ; i++) {
-                                                    Intent myIntent = new Intent(MainActivity.this, QuestionActivity.class);
+                                                    Intent myIntent = new Intent(MainActivity.this, SelectionActivity.class);
                                                     startActivity(myIntent);
                                                 }
 
@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         score.setVisibility(View.VISIBLE);
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onResume() {
         TextView score = (TextView) findViewById(R.id.score);
