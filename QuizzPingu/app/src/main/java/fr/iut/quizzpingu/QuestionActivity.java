@@ -1,6 +1,7 @@
 package fr.iut.quizzpingu;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -16,8 +17,9 @@ import java.util.Random;
 
 public class QuestionActivity extends Activity implements I_QuestionActivity {
 
-    public TextView question;
+    public TextView textQuestion;
     static List<Question> listquestion = null;
+    private Question question= null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,44 +36,53 @@ public class QuestionActivity extends Activity implements I_QuestionActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question_layout);
-        question = (TextView) findViewById(R.id.questionLabel);
+        textQuestion = (TextView) findViewById(R.id.questionLabel);
         Button buttonLeft = (Button) findViewById(R.id.bouton_left);
-        final Button buttonRight = (Button) findViewById(R.id.bouton_right);
+        Button buttonRight = (Button) findViewById(R.id.bouton_right);
 
-        int rndIndexMax = new Random().nextInt(listquestion.size() + 1);
-        final Question quest = listquestion.remove(rndIndexMax);
-        question.setText(quest.getQuestion());
+        int rndIndexMax = new Random().nextInt(listquestion.size());
+        question = listquestion.remove(rndIndexMax);
+
+        if(!listquestion.isEmpty()){
+            Intent myIntent = new Intent(QuestionActivity.this, QuestionActivity.class);
+            startActivity(myIntent);
+        }
+
+        textQuestion.setText(question.getQuestion());
         if(new Random().nextInt(2) == 0) {
-            buttonLeft.setText(quest.getBonneReponse());
-            buttonRight.setText(quest.getMauvaiseReponse());
+            buttonLeft.setText(question.getBonneReponse());
+            buttonRight.setText(question.getMauvaiseReponse());
         }
         else {
-            buttonRight.setText(quest.getBonneReponse());
-            buttonLeft.setText(quest.getMauvaiseReponse());
+            buttonRight.setText(question.getBonneReponse());
+            buttonLeft.setText(question.getMauvaiseReponse());
         }
         View.OnClickListener buttonListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(v.getId()== R.id.bouton_left || v.getId()== R.id.bouton_right){
-                    if(((Button)v).getText().equals(quest.getBonneReponse())) {
+                    if(((Button)v).getText().equals(question.getBonneReponse())) {
                         MainActivity.score++;
                         changeBackground(Color.GREEN);
                     }else{
                         changeBackground(Color.RED);
                     }
                 }
-
-                onBackPressed();
+                finish();
 
             }
         };
 
         buttonLeft.setOnClickListener(buttonListener);
         buttonRight.setOnClickListener(buttonListener);
+
     }
+
 
     public void changeBackground(int changeColor){
         ConstraintLayout l = (ConstraintLayout) findViewById(R.id.questionLayout);
         l.setBackgroundColor(changeColor);
     }
+
+
 }

@@ -1,6 +1,7 @@
 package fr.iut.quizzpingu;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class SelectionActivity extends Activity implements I_QuestionActivity {
 
@@ -31,14 +33,22 @@ public class SelectionActivity extends Activity implements I_QuestionActivity {
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.selection_layout);
-
-        question = listquestion.remove(0);
+        int rndIndexMax = new Random().nextInt(listquestion.size());
+        question = listquestion.remove(rndIndexMax);
         txtQuestion = (TextView) findViewById(R.id.textView);
         bar = (SeekBar) findViewById(R.id.seekBar);
         textbar = (TextView) findViewById(R.id.textBar);
         Button valider = (Button) findViewById(R.id.valider);
         textbar.setText("Progress: " + bar.getProgress() );
         txtQuestion.setText(question.getQuestion());
+
+        if(Integer.parseInt(question.getBonneReponse())>10){
+            bar.setMax(200);
+        }
+        if(!listquestion.isEmpty()){
+            Intent myIntent = new Intent(SelectionActivity.this, SelectionActivity.class);
+            startActivity(myIntent);
+        }
 
         valider.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,9 +80,47 @@ public class SelectionActivity extends Activity implements I_QuestionActivity {
                 textbar.setText("Progress: " + progress + "/" + seekBar.getMax());
             }
             });
+
+
     }
     public void changeBackground(int changeColor){
         ConstraintLayout l = (ConstraintLayout) findViewById(R.id.selectionLayout);
         l.setBackgroundColor(changeColor);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        System.out.println("onRestart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        System.out.println("onResume");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        System.out.println("onStart");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        System.out.println("onStop");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        System.out.println("onPause");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        listquestion = null;
     }
 }
