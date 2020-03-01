@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
                                                 startActivity(myIntent);
                                                 myIntent = new Intent(MainActivity.this, SelectionActivity.class);
                                                 startActivity(myIntent);
-//                                                myIntent = new Intent(MainActivity.this, LoadingActivity.class);
-//                                                startActivity(myIntent);
+                                                myIntent = new Intent(MainActivity.this, CheckActivity.class);
+                                                startActivity(myIntent);
 
                                                 onPause();
                                             }

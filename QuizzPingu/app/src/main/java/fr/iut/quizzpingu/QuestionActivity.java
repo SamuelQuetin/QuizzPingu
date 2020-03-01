@@ -69,7 +69,6 @@ public class QuestionActivity extends Activity implements I_QuestionActivity {
                     }
                 }
                 finish();
-
             }
         };
 

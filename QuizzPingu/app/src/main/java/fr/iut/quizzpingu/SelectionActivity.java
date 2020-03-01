@@ -30,6 +30,8 @@ public class SelectionActivity extends Activity implements I_QuestionActivity {
             listquestion = new ArrayList<Question>();
             listquestion.add(new Question("Combien y a t il de saisons de pingu?","6"));
             listquestion.add(new Question("Combien y a t il d'épisodes de pingu?","156"));
+            listquestion.add(new Question("Combien de minutes dure un épisode?","5"));
+            listquestion.add(new Question("Combien d'épisodes y a t-il dans chaque saison de pingu?","26"));
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.selection_layout);
@@ -39,10 +41,15 @@ public class SelectionActivity extends Activity implements I_QuestionActivity {
         bar = (SeekBar) findViewById(R.id.seekBar);
         textbar = (TextView) findViewById(R.id.textBar);
         Button valider = (Button) findViewById(R.id.valider);
-        textbar.setText("Progress: " + bar.getProgress() );
+        textbar.setText("Progress: " + bar.getProgress() + "/" + bar.getMax());
         txtQuestion.setText(question.getQuestion());
-
         if(Integer.parseInt(question.getBonneReponse())>10){
+            bar.setMax(50);
+        }
+        if(Integer.parseInt(question.getBonneReponse())>50){
+            bar.setMax(100);
+        }
+        if(Integer.parseInt(question.getBonneReponse())>100){
             bar.setMax(200);
         }
         if(!listquestion.isEmpty()){
@@ -66,18 +73,18 @@ public class SelectionActivity extends Activity implements I_QuestionActivity {
         bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             int progress = 0;
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progressValue, boolean fromUser) {
+            public void onProgressChanged(SeekBar bar, int progressValue, boolean fromUser) {
                 progress = progressValue;
-                textbar.setText("Progress: " + progressValue + "/" + seekBar.getMax());
+                textbar.setText("Progress: " + progressValue + "/" + bar.getMax());
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+            public void onStartTrackingTouch(SeekBar bar) {
             }
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                textbar.setText("Progress: " + progress + "/" + seekBar.getMax());
+            public void onStopTrackingTouch(SeekBar bar) {
+                textbar.setText("Progress: " + progress + "/" + bar.getMax());
             }
             });
 
