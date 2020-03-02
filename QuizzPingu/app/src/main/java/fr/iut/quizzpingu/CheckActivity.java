@@ -90,7 +90,7 @@ public class CheckActivity extends Activity implements I_QuestionActivity {
                     if(reponseD.isChecked()){
                         trucValide.add((String) reponseD.getText());
                     }
-                    if(trucValide.containsAll(question.getBonnesReponses())) {
+                    if(trucValide.containsAll(question.getBonnesReponses()) && !trucValide.containsAll(question.getMauvaisesReponses())) {
                         MainActivity.score++;
                         changeBackground(Color.GREEN);
                     }else{

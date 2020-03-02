@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CheckBox"
+        android:textAlignment="viewStart"
         app:layout_constraintEnd_toEndOf="@+id/reponseC"
         app:layout_constraintStart_toStartOf="@+id/reponseC"
         app:layout_constraintTop_toBottomOf="@+id/reponseC" />
@@ -30,6 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:textAlignment="center"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/divider3"
@@ -42,6 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CheckBox"
+        android:textAlignment="viewStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -54,6 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CheckBox"
+        android:textAlignment="viewStart"
         app:layout_constraintEnd_toEndOf="@+id/reponseA"
         app:layout_constraintStart_toStartOf="@+id/reponseA"
         app:layout_constraintTop_toBottomOf="@+id/reponseA" />
@@ -63,6 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CheckBox"
+        android:textAlignment="viewStart"
         app:layout_constraintEnd_toEndOf="@+id/reponseB"
         app:layout_constraintStart_toStartOf="@+id/reponseB"
         app:layout_constraintTop_toBottomOf="@+id/reponseB" />
